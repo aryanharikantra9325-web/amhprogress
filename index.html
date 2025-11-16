@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aryan M Harikantra — Portfolio</title>
+
+  <style>
+    :root{
+      --bg:#000;
+      --muted:#9aa0a6;
+      --accent:#ffffff;
+      --glass: rgba(255,255,255,0.03);
+      --dot-color:white;
+    }
+    :root.light{
+      --bg:#ffffff;
+      --muted:#555;
+      --accent:#000000;
+      --glass: rgba(0,0,0,0.05);
+      --dot-color:black;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:var(--accent);
+      transition:background 0.3s, color 0.3s;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+
+    /* Top bar */
+    .topbar{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 24px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
+      z-index:50;
+    }
+
+    .brand{
+      font-weight:700;
+      letter-spacing:0.4px;
+      font-size:18px;
+    }
+
+    .nav{
+      display:flex;
+      gap:14px;
+      margin-left:auto;
+      align-items:center;
+    }
+
+    .nav a, .theme-btn{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:all .18s ease;
+      border:none;
+      background:transparent;
+    }
+    .nav a:hover, .theme-btn:hover{
+      color:var(--accent);
+      transform:translateY(-2px);
+      background:var(--glass);
+    }
+
+    main{
+      padding-top:110px;
+      max-width:980px;
+      margin:0 auto;
+      padding-left:20px;
+      padding-right:20px;
+    }
+
+    section{
+      padding:56px 0;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    h1.section-title{
+      margin:0 0 14px 0;
+      font-size:28px;
+      color:var(--accent);
+    }
+
+    p.lead{
+      color:var(--muted);
+      margin:0;
+    }
+
+    #bgCanvas{
+      position:fixed;
+      top:0;left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <header class="topbar">
+    <div class="brand">Aryan M Harikantra</div>
+    <nav class="nav">
+      <a href="https://drive.google.com/drive/folders/15DVy1I99tIUHOX-_jtS59m5v6DdqN_3n?usp=sharing" target="_blank">Projects</a>
+      <a href="https://www.linkedin.com/in/aryan-harikantra-259945368?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BmH8UO6xDTt2n7YHczIde7Q%3D%3D" target="_blank">LinkedIn</a>
+
+      <!-- THEME TOGGLE BUTTON -->
+      <button class="theme-btn" id="themeToggle">Light Mode</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="projects">
+      <h1 class="section-title">Projects</h1>
+      <h2 style="margin:0 0 6px 0; font-size:22px; color:var(--accent);">Connecting Rod</h2>
+      <div style="color:var(--muted); font-size:14px; margin-bottom:10px;">16-11-2025</div>
+      <a href="https://drive.google.com/drive/folders/1s7Tt3mCEm-2kgxNUDJLooE1nGWG_yCG1?usp=sharing" target="_blank" style="color:#4da6ff; font-size:15px; text-decoration:none;">Project File</a>
+    </section>
+
+    <section id="about">
+      <h1 class="section-title">About</h1>
+      <p class="lead">
+        Hi I'm Aryan. I'm a Mechanical Engineering student from B.M.S College of Engineering focused on Product Design, CAD, Manufacturing, and Material Science.<br><br>
+        I enjoy turning ideas into real, functional designs through clean 2D drafting, solid modelling, and practical engineering thinking.<br><br>
+        I’m currently building projects around connecting rods, gearbox housings, mechanical components, and product design workflows to sharpen my portfolio.<br><br>
+        My long-term goal is to grow into a Product Design / Mechatronics Engineer, working with companies that push engineering innovation.<br><br>
+        I prefer working with clarity, logic, and straightforward execution — no over-engineering, just effective solutions that work.<br><br>
+        I will also be working on IoT, SolidWorks (3D modelling), Ansys, and CFD.<br><br>
+        All future personal projects will be uploaded here.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h1 class="section-title">Contact</h1>
+      <p class="lead">Email: <a href="mailto:realaryanharikantra@gmail.com">realaryanharikantra@gmail.com</a></p>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth'});
+        }
+      });
+    });
+  </script>
+
+  <script>
+    const c = document.getElementById('bgCanvas');
+    const ctx = c.getContext('2d');
+
+    function resize(){
+      c.width = innerWidth;
+      c.height = innerHeight;
+    }
+    resize();
+    addEventListener('resize', resize);
+
+    const dots = Array.from({length:60}, ()=>({
+      x:Math.random()*innerWidth,
+      y:Math.random()*innerHeight,
+      vx:(Math.random()-0.5)*0.4,
+      vy:(Math.random()-0.5)*0.4,
+      r:Math.random()*1+0.5
+    }));
+
+    function animate(){
+      ctx.clearRect(0,0,c.width,c.height);
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--dot-color');
+      for(const d of dots){
+        ctx.beginPath();
+        ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+        ctx.fill();
+        d.x += d.vx;
+        d.y += d.vy;
+        if(d.x<0||d.x>c.width) d.vx *= -1;
+        if(d.y<0||d.y>c.height) d.vy *= -1;
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+
+    toggleBtn.addEventListener('click', ()=>{
+      document.documentElement.classList.toggle('light');
+      toggleBtn.textContent =
+        document.documentElement.classList.contains('light')
+        ? "Dark Mode"
+        : "Light Mode";
+    });
+  </script>
+
+</body>
+</html>
